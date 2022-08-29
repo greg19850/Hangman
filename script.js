@@ -7,9 +7,25 @@ const finalMessage = document.getElementById('final-message');
 
 const figureParts = document.querySelectorAll('.figure-part');
 
-const hiddenWords = ['programmer', 'notification', 'workout', 'television', 'bodybuilder'];
+const words = ['programmer', 'notification', 'workout', 'television', 'bodybuilder'];
 
-const correctWords = [];
-const incorrectWords = [];
+const hiddenWord = words[Math.floor(Math.random() * words.length)];
 
+const correctLetters = [];
+const incorrectLetters = [];
 
+function displayWord() {
+  wordElement.innerHTML = `
+    ${hiddenWord
+      .split('')
+      .map(letter => `
+        <span class='letter'>
+          ${correctLetters.includes(letter) ? letter : ''}
+        </span>
+      `).join('')
+
+    }
+  `
+}
+
+displayWord()
