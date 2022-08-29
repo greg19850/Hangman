@@ -34,6 +34,18 @@ function displayWord() {
   }
 }
 
+function updateWrongLettersElement() {
+
+}
+
+function showNotification() {
+  notification.classList.add('show')
+
+  setTimeout(() => {
+    notification.classList.remove('show')
+  }, 2000)
+}
+
 function letterKeysHandle(e) {
   if (e.keyCode >= 65 && e.keyCode <= 95) {
     const letter = e.key;
