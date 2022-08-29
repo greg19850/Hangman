@@ -1,6 +1,6 @@
 const wordElement = document.getElementById('word');
 const wrongLettersElement = document.getElementById('wrong-letters');
-const playAgainBtn = document.getElementById('play-again');
+const playAgainBtn = document.getElementById('play-button');
 const popup = document.querySelector('.popup-container');
 const notification = document.querySelector('.notification-container');
 const finalMessage = document.getElementById('final-message');
@@ -9,10 +9,12 @@ const figureParts = document.querySelectorAll('.figure-part');
 
 const words = ['programmer', 'notification', 'workout', 'television', 'bodybuilder'];
 
-const hiddenWord = words[Math.floor(Math.random() * words.length)];
+let hiddenWord = words[Math.floor(Math.random() * words.length)];
 
-const correctLetters = [];
-const wrongLetters = [];
+let correctLetters = [];
+let wrongLetters = [];
+
+//display of hidden word
 
 function displayWord() {
   wordElement.innerHTML = `
@@ -33,6 +35,8 @@ function displayWord() {
     popup.style.display = 'flex';
   }
 }
+
+//update Wrong letters 
 
 function updateWrongLettersElement() {
   //Display wrong letters
@@ -66,6 +70,22 @@ function showNotification() {
   }, 2000)
 }
 
+//Start new game on button click
+
+function resetGame() {
+  correctLetters = [];
+  wrongLetters = [];
+
+
+  hiddenWord = words[Math.floor(Math.random() * words.length)];
+
+  displayWord();
+  updateWrongLettersElement();
+  popup.style.display = 'none'
+}
+
+//handling key pressing - display letters on screen
+
 function letterKeysHandle(e) {
   if (e.keyCode >= 65 && e.keyCode <= 95) {
     const letter = e.key;
@@ -92,7 +112,7 @@ function letterKeysHandle(e) {
   }
 }
 
-
+playAgainBtn.addEventListener('click', resetGame)
 window.addEventListener('keydown', letterKeysHandle)
 
 displayWord()
