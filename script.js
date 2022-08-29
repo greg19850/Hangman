@@ -23,9 +23,15 @@ function displayWord() {
           ${correctLetters.includes(letter) ? letter : ''}
         </span>
       `).join('')
-
     }
   `
+
+  const innerWord = wordElement.innerText.replace(/\n/g, '')
+
+  if (hiddenWord === innerWord) {
+    finalMessage.innerText = 'Congratulations, you won!';
+    popup.style.display = 'flex';
+  }
 }
 
 displayWord()
