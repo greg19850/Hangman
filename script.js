@@ -12,7 +12,7 @@ const words = ['programmer', 'notification', 'workout', 'television', 'bodybuild
 const hiddenWord = words[Math.floor(Math.random() * words.length)];
 
 const correctLetters = [];
-const incorrectLetters = [];
+const wrongLetters = [];
 
 function displayWord() {
   wordElement.innerHTML = `
@@ -33,5 +33,34 @@ function displayWord() {
     popup.style.display = 'flex';
   }
 }
+
+function letterKeysHandle(e) {
+  if (e.keyCode >= 65 && e.keyCode <= 95) {
+    const letter = e.key;
+
+    if (hiddenWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter)
+
+        displayWord()
+      } else {
+        showNotification()
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter)
+
+        updateWrongLettersElement()
+      } else {
+        showNotification()
+      }
+    }
+
+
+  }
+}
+
+
+window.addEventListener('keydown', letterKeysHandle)
 
 displayWord()
