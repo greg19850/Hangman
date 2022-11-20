@@ -7,7 +7,7 @@ const finalMessage = document.getElementById('final-message');
 
 const figureParts = document.querySelectorAll('.figure-part');
 
-const words = ['programmer', 'notification', 'workout', 'television', 'bodybuilder'];
+const words = ['programmer', 'notification', 'workout', 'television', 'bodybuilder', 'coding', 'developer'];
 
 let hiddenWord = words[Math.floor(Math.random() * words.length)];
 
